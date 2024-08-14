@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         new URLSearchParams({
             client_id: '4a6baa63ea2641ada0e3e9c1f8e50a84',
             response_type: 'code',
-            redirect_uri: 'http://localhost:3000/callback',
+            redirect_uri: 'https://mouri69-recommender.vercel.app/callback',
             scope: 'user-library-read',
         }).toString();
 
