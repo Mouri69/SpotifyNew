@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const querystring = require('querystring');
+const path = require('path');
 const app = express();
 
 const CLIENT_ID = '4a6baa63ea2641ada0e3e9c1f8e50a84';
@@ -9,12 +10,9 @@ const REDIRECT_URI = 'https://mouri69-recommender.vercel.app/callback';
 
 app.use(express.static('public'));
 
-const path = require('path');
-
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
 
 app.get('/callback', async (req, res) => {
     const code = req.query.code;
