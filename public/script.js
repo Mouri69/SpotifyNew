@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginButton = document.getElementById('login-button');
     const recommendationsContainer = document.getElementById('recommendations');
 
-    // Spotify authorization URL
     const SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize?' +
         new URLSearchParams({
             client_id: '4a6baa63ea2641ada0e3e9c1f8e50a84',
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch recommendations from the server
     const fetchRecommendations = async () => {
         try {
-            const response = await fetch('/callback');
+            const response = await fetch('/recommendations');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -52,5 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     };
 
-    fetchRecommendations();
+    // If the URL contains a code parameter, fetch recommendations
+    const queryParams = new URLSearchParams(window.location.search);
+    const code = queryParams.get('code');
+    if (code) {
+        fetchRecommendations();
+    }
 });
