@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch recommendations from the server
     const fetchRecommendations = async () => {
         try {
-            const response = await fetch('/recommendations');
+            const response = await fetch('/callback'); // This URL is incorrect, replace with '/recommendations' after user is authenticated
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const queryParams = new URLSearchParams(window.location.search);
     const code = queryParams.get('code');
     if (code) {
+        // Call the server with the code to fetch recommendations
         fetchRecommendations();
     }
 });

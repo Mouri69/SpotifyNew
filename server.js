@@ -7,6 +7,7 @@ const CLIENT_ID = '4a6baa63ea2641ada0e3e9c1f8e50a84';
 const CLIENT_SECRET = '05145083e7b94c3e90d9b66277164318';
 const REDIRECT_URI = 'https://mouri69-recommender.vercel.app/callback';
 
+// Serve static files from the public directory
 app.use(express.static('public'));
 
 app.get('/callback', async (req, res) => {
@@ -17,7 +18,8 @@ app.get('/callback', async (req, res) => {
     }
 
     try {
-        const response = await axios.post('https://accounts.spotify.com/api/token', querystring.stringify({
+        // Exchange code for access token
+        const tokenResponse = await axios.post('https://accounts.spotify.com/api/token', querystring.stringify({
             grant_type: 'authorization_code',
             code: code,
             redirect_uri: REDIRECT_URI,
@@ -29,14 +31,15 @@ app.get('/callback', async (req, res) => {
             }
         });
 
-        const { access_token } = response.data;
+        const { access_token } = tokenResponse.data;
 
+        // Fetch recommendations
         const recommendationsResponse = await axios.get('https://api.spotify.com/v1/recommendations', {
             headers: {
                 'Authorization': `Bearer ${access_token}`
             },
             params: {
-                seed_genres: 'pop', // Example parameter, update as needed
+                seed_genres: 'pop', // Example parameter, adjust as needed
                 limit: 10
             }
         });
