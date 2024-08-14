@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/callback",
+      "dest": "server.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "server.js"
     }
