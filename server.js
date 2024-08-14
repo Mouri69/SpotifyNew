@@ -8,10 +8,11 @@ const CLIENT_ID = '4a6baa63ea2641ada0e3e9c1f8e50a84';
 const CLIENT_SECRET = '05145083e7b94c3e90d9b66277164318';
 const REDIRECT_URI = 'https://mouri69-recommender.vercel.app/callback';
 
-app.use(express.static('public'));
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html')); // Serve the HTML file
 });
 
 app.get('/callback', async (req, res) => {
