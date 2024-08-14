@@ -9,9 +9,12 @@ const REDIRECT_URI = 'https://mouri69-recommender.vercel.app/callback';
 
 app.use(express.static('public'));
 
+const path = require('path');
+
 app.get('/', (req, res) => {
-    res.send('Welcome to the home page');
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
 
 app.get('/callback', async (req, res) => {
     const code = req.query.code;
