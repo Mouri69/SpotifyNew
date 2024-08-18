@@ -42,7 +42,7 @@ app.get('/callback', async (req, res) => {
                 'Authorization': `Bearer ${access_token}`
             },
             params: {
-                seed_genres: 'pop,rock,jazz,hip-hop,indie,rap,world-music,arabic,folk',
+                seed_genres: 'pop',
                 limit: 10
             }
         });
