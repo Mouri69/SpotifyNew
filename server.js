@@ -4,9 +4,9 @@ const querystring = require('querystring');
 const path = require('path');
 const app = express();
 
-const CLIENT_ID = '4a6baa63ea2641ada0e3e9c1f8e50a84';
-const CLIENT_SECRET = '05145083e7b94c3e90d9b66277164318';
-const REDIRECT_URI = 'https://mouri69-recommender.vercel.app/callback';
+const CLIENT_ID = '';
+const CLIENT_SECRET = '';
+const REDIRECT_URI = '';
 
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
